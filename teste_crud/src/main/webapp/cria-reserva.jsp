@@ -3,6 +3,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="model.UsuarioDao" %>
 <%@ page import="model.Usuario" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="model.ReservaQuartoDao" %>
+<%@ page import="model.ReservaQuarto" %>
+<%@ page import="model.Quarto" %>
 <!DOCTYPE html>
 <html lang="pt">
 
@@ -73,50 +77,46 @@
     <div id="fundo_login"></div>
 
     <div id="prancheta_pagamento">
-        <h1>Realizar pagamento</h1>
+        <h1>Realizar reserva</h1>
         <div class="caixa-login">
-            <form id="area_pagamento">
+            <form id="area_pagamento" action="ServletHotel" method="post">
                 <div class="mb-3">
-                    <label for="inputNome" class="form-label">Nome</label>
+                    <label for="inputNome" class="form-label">Email</label>
                     <input type="text" class="form-control" id="inputNome" required maxlength="50"
-                        placeholder="Nome no cartão">
+                        placeholder="Email" name="txtEmailReserva">
                 </div>
 
-                <div class="dados_input_pagamento">
                     <div class="mb-3">
-                        <label for="inputNumCard" class="form-label">Número do cartão</label>
-                        <input type="text" class="form-control" id="inputNumCard" required maxlength="19"
-                            pattern="[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}" placeholder="0000 0000 0000 0000">
-                    </div>
+                    
+					
+					<c:forEach var="quarto" items="${listaQuartos}">
+						<c:choose> 
+						
+						  <c:when test="${quarto.qtdQuarto == 0}">
+						  
+							<label> INDISPONÍVEL - <c:out value="${quarto.dsQuarto}"> </c:out> - </label>
+						    <label> Quantidade disponível: <c:out value="${quarto.qtdQuarto}"> </c:out> </label>
+						  	
+						  </c:when>
+						  
+						  <c:otherwise>
+						  	<input type="radio" name="txtQuartoReserva" value="${quarto.idQuarto}">
+						  	<label> <c:out value="${quarto.dsQuarto}"> </c:out> - </label>
+						  	<label> Quantidade disponível: <c:out value="${quarto.qtdQuarto}"> </c:out> </label>
+						  </c:otherwise>
+						  
+						  
 
-                    <div class="mb-3">
-                        <label for="inputVencimento" class="form-label">Vencimento</label> <br>
-                        <select class="input_vencimento">
-                            <option value="1">Janeiro</option>
-                            <option value="2">Fevereiro</option>
-                            <option value="3">Março</option>
-                            <option value="4">Abril</option>
-                            <option value="5">Maio</option>
-                            <option value="6">Junho</option>
-                            <option value="7">Julho</option>
-                            <option value="8">Agosto</option>
-                            <option value="9">Setembro</option>
-                            <option value="10">Outubro</option>
-                            <option value="11">Novembro</option>
-                            <option value="12">Dezembro</option>
-                        </select>
+						</c:choose>
+						<br>
+					</c:forEach>
+						  
+					
+					
+					
+                
 
-                        <input type="number" class="input_vencimento" min="2023" max="2050" step="1" value="2023" />
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="inputSecurityNum" class="form-label">Código de segurança</label>
-                        <input type="text" class="form-control" id="inputSecurityNum" required maxlength="3"
-                            pattern="[0-9]{3}" placeholder="000">
-                    </div>
-                </div>
-
-                <button type="submit" class="btn btn-success">Efetuar Pagamento</button>
+                <button type="submit" class="btn btn-success" name="btnOption" value="enviaReserva">Efetuar Reserva</button>
 
                 <a href="#" target="_blank" class="pag-pix">
                     <img id="logo_pix" src="files/pagamento-pix.jpg" alt="pix">

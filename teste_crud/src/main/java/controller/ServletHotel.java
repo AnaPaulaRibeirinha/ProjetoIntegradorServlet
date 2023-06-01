@@ -1,6 +1,7 @@
 
 package controller;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.ContatoDao;
+import model.Quarto;
+import model.QuartoDao;
+import model.ReservaQuarto;
+import model.ReservaQuartoDao;
 import model.Contato;
 import model.Usuario;
 import model.UsuarioDao;
@@ -25,6 +30,8 @@ public class ServletHotel extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UsuarioDao u1;
 	private ContatoDao c1;
+	private ReservaQuartoDao r1;
+	private QuartoDao q1;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -36,6 +43,8 @@ public class ServletHotel extends HttpServlet {
 		super();
 		this.u1 = new UsuarioDao();
 		this.c1 = new ContatoDao();
+		this.r1 = new ReservaQuartoDao();
+		this.q1 = new QuartoDao();
 	}
     
 
@@ -83,6 +92,12 @@ public class ServletHotel extends HttpServlet {
 				break;
 			case "loginUsuario":
 				loginUsuario(request, response);
+				break;
+			case "enviaReserva":
+				enviaReserva(request,response);
+				break;
+			case "criaReservaForm":
+				criaReservaForm(request, response);
 				break;
 			default:
 				MostraTelaInicial(request, response);
@@ -154,6 +169,22 @@ public class ServletHotel extends HttpServlet {
 		
 	}
 	
+	private void enviaReserva (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String email = request.getParameter("txtEmailReserva");
+		Integer quarto = Integer.parseInt(request.getParameter("txtQuartoReserva"));
+		ReservaQuarto reserva = new ReservaQuarto(email, quarto);
+		
+		this.r1.insereReserva(reserva);
+		
+		response.sendRedirect("ServletHotel");
+		
+	}
+	
+	private void criaReservaForm (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setAttribute("listaQuartos", this.q1.selecionaTodosQuartos());
+		RequestDispatcher disp = request.getRequestDispatcher("cria-reserva.jsp");
+		disp.forward(request, response);
+	}
 
 }
 

@@ -99,8 +99,12 @@
                     ♿Acessível? Não<br>
                     🚭Fumantes? Sim
                 </p>
-
-                <a class="btn btn-success" href="pagamento-pos-reserva.jsp">Reservar</a>
+				
+				<form action="ServletHotel" method="post">
+					<button class="btn btn-success" type="submit" name="btnOption" value="criaReservaForm"> Reservar </button>
+				</form>
+				
+                
             </div>
         </div>
     </div>
@@ -134,7 +138,10 @@
                 ♿Acessível? Não<br>
                 🚭Fumantes? Sim
             </p>
-            <a class="btn btn-success" href="pagamento-pos-reserva.jsp">Reservar</a>
+            
+            <form action="ServletHotel" method="post">
+				<button class="btn btn-success" type="submit" name="btnOption" value="criaReservaForm"> Reservar </button>
+			</form>
         </div>
     </div>
     <div id="3" class="lista_quartos">
@@ -168,7 +175,9 @@
                 🚭Fumantes? Sim
             </p>
 
-            <a class="btn btn-success" href="pagamento-pos-reserva.jsp">Reservar</a>
+            <form action="ServletHotel" method="post">
+				<button class="btn btn-success" type="submit" name="btnOption" value="criaReservaForm"> Reservar </button>
+			</form>
         </div>
     </div>
     <div id="4" class="lista_quartos">
@@ -205,7 +214,9 @@
                 🚭Fumantes? Sim
             </p>
 
-            <a class="btn btn-success" href="pagamento-pos-reserva.jsp">Reservar</a>
+            <form action="ServletHotel" method="post">
+				<button class="btn btn-success" type="submit" name="btnOption" value="criaReservaForm"> Reservar </button>
+			</form>
         </div>
     </div>
 </div>
@@ -239,7 +250,10 @@
             ♿Acessível? Não<br>
             🚭Fumantes? Sim
         </p>
-        <a class="btn btn-success" href="pagamento-pos-reserva.jsp">Reservar</a>
+        
+        <form action="ServletHotel" method="post">
+			<button class="btn btn-success" type="submit" name="btnOption" value="criaReservaForm"> Reservar </button>
+		</form>
     </div>
 </div>
 <div id="6" class="bloco_conteudo_quarto">
@@ -273,7 +287,9 @@
             🚭Fumantes? Sim
         </p>
 
-        <a class="btn btn-success" href="pagamento-pos-reserva.jsp">Reservar</a>
+        <form action="ServletHotel" method="post">
+			<button class="btn btn-success" type="submit" name="btnOption" value="criaReservaForm"> Reservar </button>
+		</form>
     </div>
 </div>
 <div id="1" class="lista_quartos">
@@ -310,7 +326,9 @@
             🚭Fumantes? Sim
         </p>
 
-        <a class="btn btn-success" href="pagamento-pos-reserva.jsp">Reservar</a>
+        <form action="ServletHotel" method="post">
+			<button class="btn btn-success" type="submit" name="btnOption" value="criaReservaForm"> Reservar </button>
+		</form>
     </div>
 </div>
 
